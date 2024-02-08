@@ -63,7 +63,33 @@ impl<T> CustomLinkedList<T>{
         }
     }
 
-    
+    pub fn remove_first(&mut self){
+        match self.head.take(){
+            Some(old_head)=>{
+                match old_head.borrow_mut().next.take() {
+                    Some(new_head)=>{
+                        self.head = Some(new_head);
+                        self.count -= 1;
+                    }
+                    None=>{
+                        self.tail = None;
+                        self.count -= 1;
+                    }
+                }
+            }
+            None =>{
+                println!("can not remove from an empty list");
+            }
+        }
+    }
+
+    pub fn remove_last(&mut self){
+        
+    }  
+
+    pub fn length(&self) -> usize{
+        self.count
+    }  
 
 }
 
