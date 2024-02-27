@@ -7,7 +7,5 @@ fn main() {
     list.add_first(1);
     list.add_first(0);
     list.print_list();
-    list.remove_first();
-    list.print_list();
     println!("length of list: {}", list.length());
 }
