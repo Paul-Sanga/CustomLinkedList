@@ -6,7 +6,8 @@ fn main() {
     list.add_last(30);
     list.add_first(1);
     list.add_first(0);
-    list.remove_last();
+    list.print_list();
+    list.remove_first();
     list.print_list();
     println!("length of list: {}", list.length());
 }
