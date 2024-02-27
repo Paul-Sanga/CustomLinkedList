@@ -3,7 +3,7 @@ use std::rc::Rc;
 
 #[allow(dead_code)]
 #[derive(Debug, PartialEq, PartialOrd)]
-struct Node<T> {
+pub struct Node<T> {
     value: T,
     next: Option<Rc<RefCell<Node<T>>>>,
 }
@@ -20,7 +20,7 @@ impl<T: ToString> Node<T> {
 
 impl<T: std::fmt::Display> std::fmt::Display for Node<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Node: {}", self.value)
+        write!(f, "{}", self.value)
     }
 }
 
@@ -107,7 +107,7 @@ impl<T: std::fmt::Display> CustomLinkedList<T> {
         let mut prev_node: Option<Rc<RefCell<Node<T>>>> = None;
 
         if self.count == 0 {
-            panic!("can not remove from an empty list");
+            println!("can not remove from an empty list")
         }
         if self.count == 1 {
             self.tail = None;
@@ -151,5 +151,21 @@ impl<T: std::fmt::Display> CustomLinkedList<T> {
 
     pub fn length(&self) -> usize {
         self.count
+    }
+
+    pub fn get_head(&self)->Option<Rc<RefCell<Node<T>>>>{
+        if let Some(node) = self.head.clone(){
+            Some(Rc::clone(&node))
+        }else {
+            None
+        }
+    }
+
+    pub fn get_tail(&self)->Option<Rc<RefCell<Node<T>>>>{
+        if let Some(node) = self.tail.clone(){
+            Some(Rc::clone(&node))
+        }else {
+            None
+        }
     }
 }
